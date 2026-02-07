@@ -1,8 +1,7 @@
 
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
-
+const ai = new GoogleGenAI({ apiKey: "AIzaSyCTxEfaAesIdWiQcTj1Kc06jwlW5mcIYas" });
 export const getCourseAdvice = async (userPrompt: string): Promise<string> => {
   try {
     const response: GenerateContentResponse = await ai.models.generateContent({
