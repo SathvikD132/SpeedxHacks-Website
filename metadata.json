@@ -1,0 +1,8 @@
+{
+  "name": "SMART Hacks Coding Academy",
+  "description": "A premium learning platform for youth coding education featuring workshops, camps, and an AI-powered course advisor.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

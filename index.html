@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed x Hacks</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b026ff",
+                        "primary-hover": "#d831ff",
+                        "secondary": "#00f0ff",
+                        "wood-dark": "#050512",
+                        "wood-med": "#1a1a3a",
+                        "wood-light": "#0a0a1a",
+                        "wood-pale": "#121225",
+                        "text-main": "#ffffff",
+                        "text-body": "#b0b0d0",
+                        "neon-pink": "#ff00cc",
+                        "neon-magenta": "#ff00e5",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "serif": ["Cinzel", "serif"],
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px rgba(0, 0, 0, 0.5)',
+                        'glow': '0 0 35px rgba(176, 38, 255, 0.4)',
+                        'neon': '0 0 20px rgba(0, 240, 255, 0.3)',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 20s ease-in-out infinite',
+                        'float-delayed': 'float 25s ease-in-out infinite 5s',
+                        'subtle-drift': 'drift 60s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+                            '33%': { transform: 'translate(5%, 10%) scale(1.1)' },
+                            '66%': { transform: 'translate(-5%, -5%) scale(0.95)' },
+                        },
+                        drift: {
+                            '0%': { transform: 'translate(0, 0)' },
+                            '50%': { transform: 'translate(-2%, 2%)' },
+                            '100%': { transform: 'translate(0, 0)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer components {
+            :root {
+                --accent-color: #b026ff;
+                --scrollbar-bg: #050512;
+                --scroll-y: 0;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                @apply transition-colors duration-700;
+                overflow-y: scroll;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+            .glass-panel {
+                @apply bg-black/40 backdrop-blur-3xl border border-white/10 shadow-glass;
+            }
+            .glass-card {
+                @apply bg-white/5 backdrop-blur-[40px] border border-white/10 shadow-2xl transition-all duration-500 hover:bg-white/10;
+            }
+            .btn-register {
+                @apply bg-gradient-to-r from-[#d400ff] to-[#ff00e5] text-white shadow-glow transition-all duration-300 hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] font-black uppercase tracking-widest;
+            }
+            .btn-gold {
+                @apply bg-gradient-to-br from-[#b026ff] to-[#ff00cc] text-white shadow-glow transition-all duration-300 hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:scale-95;
+            }
+            .btn-brown {
+                @apply bg-white text-black shadow-lg transition-all duration-300 hover:bg-secondary hover:-translate-y-0.5 active:translate-y-0;
+            }
+            .text-gold {
+                background: linear-gradient(to right, #b026ff, #ff00cc, #33ccff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                color: transparent;
+            }
+            .text-green-gradient {
+                background: linear-gradient(to right, #22c55e, #3b82f6, #00f0ff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                color: transparent;
+            }
+            .text-purple-gradient {
+                background: linear-gradient(to right, #b026ff, #ff00cc, #d400ff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                color: transparent;
+            }
+            
+            .reveal {
+                @apply opacity-0 translate-y-[30px] scale-[0.98];
+                transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease-out;
+                will-change: transform, opacity;
+            }
+            .reveal.active {
+                @apply opacity-100 translate-y-0 scale-100;
+            }
+            
+            #dots-canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -5;
+                pointer-events: none;
+                will-change: transform;
+            }
+
+            ::-webkit-scrollbar {
+                width: 14px;
+            }
+            ::-webkit-scrollbar-track {
+                background: var(--accent-color);
+                transition: background 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #4b5563;
+                border: 3px solid var(--accent-color);
+                border-radius: 100px;
+                transition: background 0.3s ease;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #6b7280;
+            }
+
+            .ultra-glass {
+              background: rgba(15, 15, 25, 0.7);
+              backdrop-filter: blur(20px);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            .ultra-glass-border {
+              border: 1px solid rgba(176, 38, 255, 0.3);
+            }
+
+            .parallax-element {
+              will-change: transform;
+              transform: translateY(calc(var(--scroll-y) * -0.1px));
+            }
+            
+            .infinity-parallax {
+               will-change: transform;
+               transform: translateY(calc(var(--scroll-y) * 0.4px)) rotate(calc(15deg + var(--scroll-y) * 0.01deg)) scale(calc(7 + var(--scroll-y) * 0.0008));
+            }
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-wood-dark text-text-main font-display overflow-x-hidden selection:bg-primary/30 selection:text-white">
+    <canvas id="dots-canvas"></canvas>
+    <div id="root"></div>
+    <script>
+        // High performance scroll syncing
+        const root = document.documentElement;
+        const body = document.body;
+        
+        let scrollY = window.scrollY;
+        
+        const updateScroll = () => {
+          scrollY = window.scrollY;
+          root.style.setProperty('--scroll-y', scrollY);
+          
+          // Fast reveal handling using IntersectionObserver is better, but this is a legacy fallback
+          // if the IntersectionObserver isn't initialized yet by React.
+        };
+        
+        window.addEventListener('scroll', () => {
+          requestAnimationFrame(updateScroll);
+        }, { passive: true });
+
+        // Dot Canvas Optimization
+        const canvas = document.getElementById('dots-canvas');
+        const ctx = canvas.getContext('2d');
+        let staticFlecks = [];
+        
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            staticFlecks = [];
+            const fleckCount = Math.min(350, (window.innerWidth * window.innerHeight) / 3000); // Responsive density
+            const colors = ['rgba(176, 38, 255, 0.2)', 'rgba(0, 240, 255, 0.1)', 'rgba(255, 255, 255, 0.05)'];
+            for (let i = 0; i < fleckCount; i++) {
+                staticFlecks.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 1.5 + 0.5,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speed: Math.random() * 0.2 + 0.05
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const currentScroll = window.scrollY;
+            const h = canvas.height;
+            for(let i=0; i<staticFlecks.length; i++) {
+                const fleck = staticFlecks[i];
+                ctx.fillStyle = fleck.color;
+                ctx.beginPath();
+                let y = (fleck.y - currentScroll * fleck.speed) % h;
+                if (y < 0) y += h;
+                ctx.arc(fleck.x, y, fleck.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', () => {
+          init();
+        });
+        init();
+        draw();
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
